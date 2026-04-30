@@ -1,0 +1,14 @@
+B:\Games\OOP\Volchkov\SmartHomeIoTSimulator\SmartHomeIoTSimulator\bin\Debug\net9.0-windows\SmartHomeIoTSimulator.exe
+B:\Games\OOP\Volchkov\SmartHomeIoTSimulator\SmartHomeIoTSimulator\bin\Debug\net9.0-windows\SmartHomeIoTSimulator.deps.json
+B:\Games\OOP\Volchkov\SmartHomeIoTSimulator\SmartHomeIoTSimulator\bin\Debug\net9.0-windows\SmartHomeIoTSimulator.runtimeconfig.json
+B:\Games\OOP\Volchkov\SmartHomeIoTSimulator\SmartHomeIoTSimulator\bin\Debug\net9.0-windows\SmartHomeIoTSimulator.dll
+B:\Games\OOP\Volchkov\SmartHomeIoTSimulator\SmartHomeIoTSimulator\bin\Debug\net9.0-windows\SmartHomeIoTSimulator.pdb
+B:\Games\OOP\Volchkov\SmartHomeIoTSimulator\SmartHomeIoTSimulator\obj\Debug\net9.0-windows\SmartHomeIoTSimulator.GeneratedMSBuildEditorConfig.editorconfig
+B:\Games\OOP\Volchkov\SmartHomeIoTSimulator\SmartHomeIoTSimulator\obj\Debug\net9.0-windows\SmartHomeIoTSimulator.AssemblyInfoInputs.cache
+B:\Games\OOP\Volchkov\SmartHomeIoTSimulator\SmartHomeIoTSimulator\obj\Debug\net9.0-windows\SmartHomeIoTSimulator.AssemblyInfo.cs
+B:\Games\OOP\Volchkov\SmartHomeIoTSimulator\SmartHomeIoTSimulator\obj\Debug\net9.0-windows\SmartHomeIoTSimulator.csproj.CoreCompileInputs.cache
+B:\Games\OOP\Volchkov\SmartHomeIoTSimulator\SmartHomeIoTSimulator\obj\Debug\net9.0-windows\SmartHomeIoTSimulator.dll
+B:\Games\OOP\Volchkov\SmartHomeIoTSimulator\SmartHomeIoTSimulator\obj\Debug\net9.0-windows\refint\SmartHomeIoTSimulator.dll
+B:\Games\OOP\Volchkov\SmartHomeIoTSimulator\SmartHomeIoTSimulator\obj\Debug\net9.0-windows\SmartHomeIoTSimulator.pdb
+B:\Games\OOP\Volchkov\SmartHomeIoTSimulator\SmartHomeIoTSimulator\obj\Debug\net9.0-windows\SmartHomeIoTSimulator.genruntimeconfig.cache
+B:\Games\OOP\Volchkov\SmartHomeIoTSimulator\SmartHomeIoTSimulator\obj\Debug\net9.0-windows\ref\SmartHomeIoTSimulator.dll
