@@ -1,0 +1,6 @@
+B:\Games\OOP\Volchkov\SmartHomeIoTSimulator.Tests\obj\Debug\net9.0-windows\SmartHomeIoTSimulator.Tests.csproj.AssemblyReference.cache
+B:\Games\OOP\Volchkov\SmartHomeIoTSimulator.Tests\obj\Debug\net9.0-windows\SmartHomeIoTSimulator.Tests.GeneratedMSBuildEditorConfig.editorconfig
+B:\Games\OOP\Volchkov\SmartHomeIoTSimulator.Tests\obj\Debug\net9.0-windows\SmartHomeIoTSimulator.Tests.AssemblyInfoInputs.cache
+B:\Games\OOP\Volchkov\SmartHomeIoTSimulator.Tests\obj\Debug\net9.0-windows\SmartHomeIoTSimulator.Tests.AssemblyInfo.cs
+B:\Games\OOP\Volchkov\SmartHomeIoTSimulator.Tests\obj\Debug\net9.0-windows\SmartHomeIoTSimulator.Tests.csproj.CoreCompileInputs.cache
+B:\Games\OOP\Volchkov\SmartHomeIoTSimulator.Tests\obj\Debug\net9.0-windows\SmartHomeIoTSimulator.Tests.sourcelink.json
