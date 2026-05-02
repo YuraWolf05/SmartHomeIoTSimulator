@@ -1,6 +1,7 @@
 using SmartHomeIoTSimulator.Core;
 using SmartHomeIoTSimulator.Infrastructure;
 using SmartHomeIoTSimulator.Patterns;
+using SmartHomeIoTSimulator.Persistence;
 
 namespace SmartHomeIoTSimulator.UI;
 
@@ -30,6 +31,7 @@ public class MainForm : Form
     private Button _heaterToggleButton = null!;
     private Button _conditionerToggleButton = null!;
     private Button _scheduleToggleButton = null!;
+    private readonly SmartHomeStateService _stateService = new();
 
     public MainForm()
     {
@@ -262,7 +264,20 @@ public class MainForm : Form
         devicesBox.Controls.Add(_ecoInput);
         devicesBox.Controls.Add(ecoButton);
 
-        GroupBox actionsBox = CreateGroupBox("Додаткові дії", 25, 285, 500, 65);
+        GroupBox actionsBox = CreateGroupBox("Додаткові дії", 25, 285, 500, 115);
+
+        Button saveJsonButton = CreateSecondaryButton("Save JSON", 20, 65, 110);
+        saveJsonButton.Click += (_, _) => SaveJson();
+
+        Button loadJsonButton = CreateSecondaryButton("Load JSON", 140, 65, 110);
+        loadJsonButton.Click += (_, _) => LoadJson();
+
+        Button saveXmlButton = CreateSecondaryButton("Save XML", 260, 65, 110);
+        saveXmlButton.Click += (_, _) => SaveXml();
+
+        Button loadXmlButton = CreateSecondaryButton("Load XML", 380, 65, 110);
+        loadXmlButton.Click += (_, _) => LoadXml();
+
 
         Button statusButton = CreateSecondaryButton("Показати стан", 20, 25, 140);
         statusButton.Click += (_, _) => ShowStatus("Оновлено стан системи.");
@@ -281,12 +296,17 @@ public class MainForm : Form
         actionsBox.Controls.Add(demoButton);
         actionsBox.Controls.Add(explanationButton);
 
+        actionsBox.Controls.Add(saveJsonButton);
+        actionsBox.Controls.Add(loadJsonButton);
+        actionsBox.Controls.Add(saveXmlButton);
+        actionsBox.Controls.Add(loadXmlButton);
+
         _outputBox = new TextBox
         {
             Left = 25,
-            Top = 375,
+            Top = 425,
             Width = 1025,
-            Height = 315,
+            Height = 265,
             Multiline = true,
             ReadOnly = true,
             ScrollBars = ScrollBars.Vertical,
@@ -507,5 +527,93 @@ public class MainForm : Form
     private void WriteLine(string text)
     {
         _outputBox.AppendText(text + Environment.NewLine);
+    }
+
+    private SmartHomeState CollectState()
+    {
+        return new SmartHomeState
+        {
+            Temperature = _temperatureSensor.Value,
+            MotionDetected = _motionSensor.IsMotionDetected,
+            LightLevel = _lightSensor.Value,
+
+            LampOn = _lamp.IsOn,
+            HeaterOn = _heater.IsOn,
+            ConditionerOn = _conditioner.IsOn,
+
+            LampSchedule = _lamp.Schedule,
+            IsScheduleEnabled = _lamp.IsScheduleEnabled,
+
+            HeaterEcoLevel = _heater.EcoLevel
+        };
+    }
+
+    private void ApplyState(SmartHomeState state)
+    {
+        _temperatureInput.Value = (decimal)state.Temperature;
+        _lightInput.Value = (decimal)state.LightLevel;
+        _motionCheckBox.Checked = state.MotionDetected;
+
+        _facade.ChangeTemperature(state.Temperature);
+        _facade.ChangeLightLevel(state.LightLevel);
+        _facade.DetectMotion(state.MotionDetected);
+
+        if (state.LampOn)
+            _lamp.TurnOn();
+        else
+            _lamp.TurnOff();
+
+        if (state.HeaterOn)
+            _heater.TurnOn();
+        else
+            _heater.TurnOff();
+
+        if (state.ConditionerOn)
+            _conditioner.TurnOn();
+        else
+            _conditioner.TurnOff();
+
+        _lamp.SetSchedule(state.LampSchedule);
+        _scheduleInput.Text = state.LampSchedule;
+
+        if (state.IsScheduleEnabled)
+            _lamp.EnableSchedule();
+        else
+            _lamp.DisableSchedule();
+
+        _heater.SetEcoLevel(state.HeaterEcoLevel);
+        _ecoInput.Value = state.HeaterEcoLevel;
+
+        RefreshToggleButtons();
+    }
+
+    private void SaveJson()
+    {
+        string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "smart_home_state.json");
+        _stateService.SaveToJson(CollectState(), path);
+        ShowStatus($"Стан системи збережено у JSON: {path}");
+    }
+
+    private void LoadJson()
+    {
+        string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "smart_home_state.json");
+        SmartHomeState state = _stateService.LoadFromJson(path);
+        ApplyState(state);
+        ShowStatus("Стан системи завантажено з JSON.");
+    }
+
+    private void SaveXml()
+    {
+        string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "smart_home_state.xml");
+        _stateService.SaveToXml(CollectState(), path);
+        ShowStatus($"Стан системи збережено у XML: {path}");
+    }
+
+    private void LoadXml()
+    {
+        string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "smart_home_state.xml");
+        SmartHomeState state = _stateService.LoadFromXml(path);
+        ApplyState(state);
+        ShowStatus("Стан системи завантажено з XML.");
     }
 }
